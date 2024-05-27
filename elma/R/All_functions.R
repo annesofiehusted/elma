@@ -93,9 +93,15 @@ biggest_dif <- function(table, i) {
   # Finds the biggest difference between MAPs in the table within a two minute interval
   # 'table' is the dataframe we want to loop through, and 'i' is the current index we have reached and want the see if there is a medical intervention
 
+  n = nrow(table)
   biggest = 0
+  x = 6                # We want to look 2 minutes ahead, if posible
 
-  for (k in seq(0, 5)) {
+  if (i > n-6) {       # If we are too close to the end of the table, x will be the amount of observations there are left
+      x = n - i
+    }
+
+  for (k in seq(0, x-1)) {
 
     if (table[i+k, 1] < 65 & i > 3) {
       #print(paste0("k = ", k))
@@ -110,7 +116,7 @@ biggest_dif <- function(table, i) {
       }
     }
 
-    for (m in seq(k+1, 6)) {
+    for (m in seq(k+1, x)) {
       #print(paste0("biggest = ", biggest)
       #print(paste0("m = ", m))
       #print(paste0("k = ", k))
