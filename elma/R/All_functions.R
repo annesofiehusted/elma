@@ -298,6 +298,9 @@ confusion_matrix <- function(directory, minutes, HPI){
 
   #looping over each file found in the directory that has monitor data
   for (string in strings){
+
+    print(string)
+    
     case_id <- as.numeric(strapplyc(string, "Case(\\d+)", simplify = TRUE))      #getting the case number from the file-name
 
     table <- remove_repetition(case_id, string)                                  #removing potential repetition in the monitor data
