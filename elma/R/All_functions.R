@@ -117,9 +117,6 @@ biggest_dif <- function(table, i) {
     }
 
     for (m in seq(k+1, x)) {
-      #print(paste0("biggest = ", biggest)
-      #print(paste0("m = ", m))
-      #print(paste0("k = ", k))
       if (table[i+m, 1] - table[i+k, 1] >= biggest ) {           #there is a difference of 8 or higher between to MAP points
         biggest = table[i+m, 1] - table[i+k, 1]
 
@@ -198,7 +195,6 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
           break
         }
 
-        print(i+j)
         # Medical intervention
         # If there is a difference of 5 or more between the MAP of the index we are at now and the next one or there is a difference of eight or higher within two minutes we define it as a medical intervention
         # The first part of both statements are to make sure we do not go out of bounds
