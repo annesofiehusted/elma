@@ -165,12 +165,10 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
 
     if ((table[i, 2] >= 85 & table[i+1, 2] >= 85 & hpi) | (table[i, 1] <= 72 & table[i+1, 1] <= 72 &! hpi)) {   # If the observation we are at and the next is ≥ 85 we have an alarm
-      print(i)
-      print(x)
+      
       for (j in seq(1, x)) {                         # At the alarm we will then go up to 'x' observations ahead to see if there is an event
 
         if (n-i < 4) {                             # Here we will be too close the the end of the table to check any kind of event so we break
-          print(n-i)
           i = i + 1
           break
         }
@@ -224,13 +222,11 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
 
   #Backward Analysis
-  print("fw done")
   i = 6                   # We start at 6 because we do not count late alarms in the backwards analysis, so there is no reason to go through the first 5 observations
 
   while (i <= n-2) {      # We go to n-2 to not go out of bounds, as we check MAP from 'i' and two ahead
 
     if (table[i, 1] < 65 & table[i+1, 1] < 65 & table[i+2, 1] < 65) {   #if we have three consecutive MAP values under 65 we have a hypotensive event
-      print(i)
       x = obs         # We define x as obs to allow for smaller intervals, to aviod getting out of bound
 
       if (i < obs) {  # If we are too close to the start of the table, x will be the amount of observations there are ahead of the index
