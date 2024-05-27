@@ -192,7 +192,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
           break
         }
 
-
+        print(i+j)
         # Medical intervention
         # If there is a difference of 5 or more between the MAP of the index we are at now and the next one or there is a difference of eight or higher within two minutes we define it as a medical intervention
         # The first part of both statements are to make sure we do not go out of bounds
