@@ -169,6 +169,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
       for (j in seq(1, x)) {                         # At the alarm we will then go up to 'x' observations ahead to see if there is an event
 
         if (n-i < 4) {                             # Here we will be too close the the end of the table to check any kind of event so we break
+          print(n-i)
           break
         }
 
