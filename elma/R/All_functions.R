@@ -170,6 +170,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
         if (n-i < 4) {                             # Here we will be too close the the end of the table to check any kind of event so we break
           print(n-i)
+          i = i+1
           break
         }
 
