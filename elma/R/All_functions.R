@@ -166,6 +166,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
     if ((table[i, 2] >= 85 & table[i+1, 2] >= 85 & hpi & x > 3) | (table[i, 1] <= 72 & table[i+1, 1] <= 72 &! hpi & x > 3)) {   # If the observation we are at and the next is ≥ 85 we have an alarm
       print(i)
+      print(x)
       for (j in seq(1, x)) {                         # At the alarm we will then go up to 'x' observations ahead to see if there is an event
 
         if (n-i < 4) {                             # Here we will be too close the the end of the table to check any kind of event so we break
