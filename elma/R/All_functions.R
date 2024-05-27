@@ -111,7 +111,9 @@ biggest_dif <- function(table, i) {
     }
 
     for (m in seq(k+1, 6)) {
-
+      print(biggest)
+      print(m)
+      print(k)
       if (table[i+m, 1] - table[i+k, 1] >= biggest ) {           #there is a difference of 8 or higher between to MAP points
         biggest = table[i+m, 1] - table[i+k, 1]
 
