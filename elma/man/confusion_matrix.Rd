@@ -41,7 +41,7 @@ A dataframe is returned with all values from the analysis for the different case
 %%  ~~who you are~~
 Nour Mamoun Abdul Rahman Al Said,
 Anne Sofie Gam Husted,
-Sif Michelen Jonsdottir
+Sif Michelsen Jonsdottir
 }
 \note{
 %%  ~~further notes~~
