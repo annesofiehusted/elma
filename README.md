@@ -9,6 +9,6 @@ The functions are made specifically for data retrieved at the opensource databas
 
 The package is made as a part of the course "Dataprojekt" at Aarhus University, 2024. 
 
-By Nour Mamoun Abdul Rahman Al Said, Anne Sofie Gam Husted and Sif Michelen Jonsdottir.
+By Nour Mamoun Abdul Rahman Al Said, Anne Sofie Gam Husted and Sif Michelsen Jonsdottir.
 
 With guidance from associate professor [Simon Tilma Vistisen](https://pure.au.dk/portal/da/persons/vistisen%40clin.au.dk).
