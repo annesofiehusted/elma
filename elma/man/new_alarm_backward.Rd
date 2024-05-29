@@ -38,7 +38,7 @@ Returns the index for when the event is over.
 %%  ~~who you are~~
 Nour Mamoun Abdul Rahman Al Said,
 Anne Sofie Gam Husted,
-Sif Michelen Jonsdottir
+Sif Michelsen Jonsdottir
 }
 \note{
 %%  ~~further notes~~
