@@ -52,7 +52,7 @@ The function returnes the case number and the count of how many events the analy
 %%  ~~who you are~~
 Nour Mamoun Abdul Rahman Al Said,
 Anne Sofie Gam Husted,
-Sif Michelen Jonsdottir
+Sif Michelsen Jonsdottir
 }
 \note{
 %%  ~~further notes~~
