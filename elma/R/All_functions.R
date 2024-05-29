@@ -77,8 +77,8 @@ new_alarm_backward <- function(table, i) {
   # 'table' is the dataframe we want to loop through, and 'i' is the current index we have reached and observed an event
 
   for (k in seq(i, nrow(table))) {               # Looping over table from start value 'i' to end of the table
-    #if (table[k, 2] < 85) {                   #new  - If the HPI in row 'k' is less than 85 we break from the loop
-    if (table[k, 1] > 70) {                    #old -  If the MAP in row 'k' is greater than 70 we break from the loop
+    #if (table[k, 2] < 85) {                   #HPI - If the HPI in row 'k' is less than 85 we break from the loop
+    if (table[k, 1] > 70) {                    #MAP -  If the MAP in row 'k' is greater than 70 we break from the loop
       break
     }
   }
