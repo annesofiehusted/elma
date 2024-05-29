@@ -4,13 +4,13 @@ Title: For analysis of Edwards Life Sciences monitor
 Version: 0.1.0
 Author: Nour Mamoun Abdul Rahman Al Said,
         Anne Sofie Gam Husted,
-        Sif Michelen Jonsdottir
+        Sif Michelsen Jonsdottir
 Maintainer: Nour Mamoun Abdul Rahman Al Said <202206439@post.au.dk>,
             Anne Sofie Gam Husted <202206400@post.au.dk>,
             Sif Michelsen Jonsdottir <202208430@post.au.dk>
 Description: For analysis of the sensitivity and positive predictive value of Edwards Life Sciences monitor, with use of VitalDB artirialpressure data.
 Imports: devtools,
-         tidyverse,
+         tidyverse, 
          seewave,
          readxl,
          naniar,
