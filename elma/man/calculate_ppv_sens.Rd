@@ -38,7 +38,7 @@ A table with two values, the positive predictive value and the sensitivity.
 %%  ~~who you are~~
 Nour Mamoun Abdul Rahman Al Said,
 Anne Sofie Gam Husted,
-Sif Michelen Jonsdottir
+Sif Michelsen Jonsdottir
 }
 \note{
 %%  ~~further notes~~
