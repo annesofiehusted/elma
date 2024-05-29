@@ -73,7 +73,7 @@ new_alarm_forward <- function(table, i) {
 
 new_alarm_backward <- function(table, i) {
 
-  # Code for when the current event is over in backward analysis, as defined when ??? ???? ???? ??? again after an event
+  # Code for when the current event is over in backward analysis, as defined as either when the HPI is less than 85 again or the MAP is larger than 70 after an event
   # 'table' is the dataframe we want to loop through, and 'i' is the current index we have reached and observed an event
 
   for (k in seq(i, nrow(table))) {               # Looping over table from start value 'i' to end of the table
