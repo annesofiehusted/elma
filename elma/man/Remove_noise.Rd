@@ -37,7 +37,7 @@ The function returns a dataframe where tthe noise has been removed at the start 
 %%  ~~who you are~~
 Nour Mamoun Abdul Rahman Al Said,
 Anne Sofie Gam Husted,
-Sif Michelen Jonsdottir
+Sif Michelsen Jonsdottir
 }
 \note{
 %%  ~~further notes~~
