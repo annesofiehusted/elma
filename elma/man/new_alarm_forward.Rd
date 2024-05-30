@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Finds the end of an event for a forward analysis.
+Finds the end of an event for a forward analysis
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
