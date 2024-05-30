@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Calculates the positive predictive value and the sensitivity
+Calculates the positive predictive value and the sensitivity.
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
