@@ -3,7 +3,7 @@ Analysis of the Acumen Hypotension Prediction Index software from Edwards Lifesc
 
 The aim of this reporsitory is to analyse the Acumen Hypotension Prediction Index software to see how well it predicts hypotension and how many of the alarms the medical team can be sure actually corresponds to a hypotensive event.
 
-For this, we created an R package with the functions needed to do a forward and backward analysis, and a guide on how to use the functions. The guide is uploaded as both an Rmarkdown file, if you want to run the code yourself, and a html if you just want to see how it is done. 
+For this, we created an R package with the functions needed to do a forward and backward analysis, and a guide on how to use the functions. The guide is uploaded as both an Rmarkdown file, if you want to run the code yourself, and a html if you just want to see how it is done. To read the html file you have to download it. 
 
 The functions are made specifically for data retrieved at the opensource database [VitalDB](https://vitaldb.net/dataset/#h.y1yyuwuwpa9c). 
 
