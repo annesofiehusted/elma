@@ -7,10 +7,10 @@ Makes a forward and backward analysis
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-The function makes forward and backward analysis, where it checks in interval that is defined in the call, where one can also define if the alarm should go off when there is two consecutive HPI values are greater than or equal to 85, or if it should be when there are two consecutive MAP values that are less than or equal to 72.
+The function makes forward and backward analysis, where it checks in interval that is defined in the call. One can also define if the alarm should go off when there is two consecutive HPI values are greater than or equal to 85, or if it should be when there are two consecutive MAP values that are less than or equal to 72.
 }
 \usage{
-fb_analysis(case, table, minutes, hpi=TRUE)
+fb_analysis(case, table, minutes, hpi=HPI)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -25,7 +25,7 @@ fb_analysis(case, table, minutes, hpi=TRUE)
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
-For the input the case number should be the number of the case that are being analysed. The dataframe should consist of two coloumns, one with the MAP data and the other with the HPI data. The number of minutes defines how long we look ahead and back for the forward and backward analysis. By default the alarm will be defined by HPI, if 'HPI = False' is specified the alarm will be defined by MAP.
+For the input the case number should be the number of the case that is being analysed. The dataframe should consist of two coloumns, one with the MAP data and the other with the HPI data. The number of minutes defines how long we look ahead and back for the forward and backward analysis. By default the alarm will be defined by HPI, if 'HPI = False' is specified the alarm will be defined by MAP.
 
 }
 \value{
