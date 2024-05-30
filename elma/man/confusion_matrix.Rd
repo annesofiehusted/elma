@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Loops through files in directory and runs them through the function 'fb_analysis'.
+Loops through files in directory and runs them through the function 'fb_analysis'. 
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
