@@ -52,7 +52,7 @@ cases <- VitalDBR::load_VDB("https://api.vitaldb.net/cases") %>%
                     ane_type=="General") 
 ```
 
-From the dataset 'cases' it can be seen which cases meet the criteria listed. To download a specific case, the code below can be used, where there is specified which case id is wanted, and what type of data we want from this case. For this analysis the only data needed is the arterial pressure, which is called 'SNUADC/ART' in the VitalDB database. 
+From the dataset 'cases' it can be seen which cases meet the criteria listed. To download a specific case, the code below can be used. It should be specified which case id is wanted, and what type of data we want from this case. For this analysis the only data needed is the arterial pressure, which is called 'SNUADC/ART' in the VitalDB database. 
 ```{r load a case}
 vitalDB_case50 <- VitalDBR::load_case(tname = 'SNUADC/ART', caseid = 50)
 ```
@@ -60,12 +60,12 @@ vitalDB_case50 <- VitalDBR::load_case(tname = 'SNUADC/ART', caseid = 50)
 
 To get an idea of what the data looks like, it is plotted in the code below.
 
-It is worth noting that there are noise in the beginning and at the end of the data. This is likely caused by the medical crew turning on the equipment before it is attached to the patient. 
+It is worth noting that there is noise in the beginning and at the end of the data. This is likely caused by the medical crew turning on the equipment before it is attached to the patient. 
 ```{r plotting case before removing noise}
 plot(vitalDB_case50$Time, vitalDB_case50$SNUADC.ART, type = 'l',main = "VitalDB data with noise", xlab = "Time", ylab = "Arterial pressure")
 ```
 
-To remove the noise the function 'remove_noise' is used from the package 'elma'
+To remove the noise the function 'remove_noise' is used from the package 'elma'.
 ```{r removing noise}
 vitalDB_case50 <- remove_noise(vitalDB_case50)
 ```
@@ -83,7 +83,7 @@ This is done using the package 'seewave'.
 up_vitalDB_case50 <- as.data.frame(seewave:::resamp(vitalDB_case50[,2], 500, 1000, output='sample'))
 ```
 
-To verify that the arterial pressure curve is still the same, just with double the data points, the upsampled data is plotted on top of the data from vitalDB.
+To verify that the arterial pressure curve is still the same, just with double the amount of data points, the upsampled data is plotted on top of the original data from VitalDB.
 
 ```{r generating timestamp for upsampled case 50, include=FALSE}
 Time <- list()
@@ -119,7 +119,7 @@ legend(x="bottomright",box.col = "white",legend=c("Case 50", "Case 50 upsampled"
        fill = c("green","blue"))
 ```
 
-Before making the csv file that then can be put through the monitor, the analog signal needs to be the same as the actual arterial pressure. This will not be the case as it is, as the analog signal is being processed as soundwaves, that are at a higher voltage. To make up for this we made a breadboard with two resistors, but as these resistors were not the exact value needed to reduce the voltage, we divide our arterial pressure with 96.2. 
+Before making the CSV file that then can be put through the monitor, the analog signal needs to be the same as the arterial pressure. This will not be the case as is, as the analog signal is being processed as soundwaves, that are at a higher voltage than the arterial pressure. To make up for this we made a breadboard with two resistors, but as these resistors were not the exact value needed to reduce the voltage, we divide our arterial pressure with 96.2. 
 
 ```{r divide up_vitalDB_case50 by 96.2}
 up_vitalDB_case50$SNUADC.ART <- up_vitalDB_case50$SNUADC.ART/96.2
@@ -127,7 +127,7 @@ up_vitalDB_case50$SNUADC.ART <- up_vitalDB_case50$SNUADC.ART/96.2
 write_csv(up_vitalDB_case50, "Case50.csv", col_names = FALSE)
 ```
 
-To get the data properly through the monitor the sex, age, height and weight of the case patient is also needed, as the Acumen Hypotension Prediction Index software needs this information to make the HPI. 
+To get the data properly through the monitor the sex, age, height, and weight of the case patient is also needed, as the Acumen Hypotension Prediction Index software needs this information to calculate the HPI. 
 This can be obtained by running the code below.
 
 ```{r getting case info}
@@ -139,19 +139,21 @@ When this is done the data is ready to be passed through the monitor.
 
 # After monitor
 
-When multiple cases have been passed through the monitor, the function 'confusion_matrix' can run trough all files and gives out the values obtained from the forward backward analysis for each case. 
+When multiple cases have been passed through the monitor, the function 'confusion_matrix' can run through all files and give out the values obtained from the forward backward analysis for each case. 
 
-It is important to note that for the function 'confusion_matrix' to work properly, the files from the monitor must be named 'Casexxx', where xxx is the case number. So for the example of case number 50, the file from the monitor should be named 'Case50'.  
+It is important to note that for the function 'confusion_matrix' to work properly, the files from the monitor must be named 'Casexxx', where xxx is the case id. So for the example of case id 50, the file from the monitor should be named 'Case50'.  
 
-The values returned in the confusion matrix are for the forward analysis late alarms, which are alarms that went off less than a minute before the hypotensive event, medical intervention, true positives, false positives. For the backward analysis the values returned are ongoing alarms, which is an alarm that started before we enter the interval of inspection, true positives, and false negatives. 
+The values returned in the confusion matrix are for the forward analysis late alarms, medical intervention, true positives, false positives. Late alarms are alarms that went off less than a minute before the hypotensive event 
 
 The medical interventions are defined as either a positive difference of five or higher between two consecutive MAP values or a positive difference of eight or higher in a two minute interval. 
 
-The function takes arguments 'directory', 'minutes' and 'HPI', where the 'directory' is your directory containing the files from the monitor data, 'minutes' is the time interval you want to give the forward and backward analysis, so the amount of minutes you want to look ahead or back from an event. 'HPI' is a boolean value, TRUE/FALSE, depending on whether you want the alarm to be defined by HPI (True) or MAP (False).
+For the backward analysis the values returned are ongoing alarms, true positives, and false negatives. An ongoing alarm is an alarm that started before we enter the interval of inspection. 
+
+The function takes arguments 'directory', 'minutes' and 'HPI', where the 'directory' is your directory containing the files from the monitor. 'minutes' is the time interval you want to give the forward and backward analysis, so the amount of minutes you want to look ahead or back from an event. 'HPI' is a boolean value, TRUE/FALSE, depending on whether you want the alarm to be defined by HPI (True) or MAP (False).
 
 While the function is running it prints the name of the file it is currently analysing, so you can see how far along it is.
 
-Here the files with the monitor data is stored at the working directory. The analysis looks at 5 minute intervals where the alarm is defined by HPI.
+Here the files with the monitor data is stored at the working directory. The analysis looks at 5 minute intervals and the alarm is defined by HPI.
 
 ```{r analysing cases using HPI and 5 minute interval}
 conf_HPI <- confusion_matrix(getwd(), 5, TRUE)
