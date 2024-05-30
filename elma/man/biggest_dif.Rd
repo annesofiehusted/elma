@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Finds the biggest positive difference in a two minute window
+Finds the biggest positive difference in a two minute window.
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
