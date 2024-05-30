@@ -35,7 +35,7 @@ library(gsubfn)
 # Introduction
 
 This is a method for making an analysis of the Edwards Lifesciences monitor, specifically the Acumen Hypotension Prediction Index software.
-As Edwards Life sciences has not made any data available, data must be generated, which is done by pulling data from the opensource database VitalDB. This data must be transformed to an analog signal, which will mimic a human arterial pressure, that can then be passed through the monitor.
+As Edwards Lifesciences has not made any data available, data must be generated, which is done by pulling data from the opensource database VitalDB. This data must be transformed to an analog signal, which will mimic a human arterial pressure, that can then be passed through the monitor.
 
 When the data has been passed through the monitor, the data is analysed and the positive predictive value and sensitivity is calculated. 
 
