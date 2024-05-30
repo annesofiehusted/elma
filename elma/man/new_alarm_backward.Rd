@@ -6,7 +6,7 @@ Finds the end of an event for a backward analysis
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Finds the end of an event and returns the index of when the event is over, which is defined as when MAP is grater than 70.
+Finds the end of an event and returns the index of when the event is over, which is defined as when MAP is greater than 70.
 }
 \usage{
 new_alarm_backward(table, i)
@@ -21,7 +21,7 @@ new_alarm_backward(table, i)
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
-Input should be a dataframe with two coloumns, one with MAP data and the other with HPI data, and the index input should be the index for when the event starts.
+Input should be a dataframe with two coloumns, one with MAP data and the other with HPI data. The index input should be the index for when the event starts.
 }
 \value{
 %%  ~Describe the value returned
