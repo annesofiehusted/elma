@@ -1,24 +1,24 @@
 remove_noise <- function(table){
 
-  for (i in seq(1, length(table[, 1]), by=10)){       # Looping over every tenth entry in the table
+  for (i in seq(1, length(table[, 1]), by=10)){       # looping over every tenth entry in the table
 
-    y = sum(table[i:(i+1000), 2]) / 1000              # Taking the mean of the next 1000 observations
+    y = sum(table[i:(i+1000), 2]) / 1000              # taking the mean of the next 1000 observations
 
-    if(y > 39.99){                                    # If the mean is over 39.99 we break out of this loop
+    if(y > 39.99){                                    # if the mean is over 39.99 we break out of this loop
       break
     }
   }
 
-  for (j in seq(length(table[, 1]), 1, by=-10)) {       # Looping over every tenth entry in the table, but this time we start at the end
+  for (j in seq(length(table[, 1]), 1, by=-10)) {       # looping over every tenth entry in the table, but this time we start at the end
 
-    y = sum(table[(j-1000):j, 2]) / 1000                # Here we agian find the mean of the next 1000 observations
+    y = sum(table[(j-1000):j, 2]) / 1000                # here we agian find the mean of the next 1000 observations
 
-    if(y > 39.99){                                      # If the mean is over 39.99 we break out of this loop
+    if(y > 39.99){                                      # if the mean is over 39.99 we break out of this loop
       break
     }
   }
 
-  return(subset(table, Time >= table[i, 1] & Time <= table[j, 1]))    # We return the index both loops reached before the mean was above 39.99
+  return(subset(table, Time >= table[i, 1] & Time <= table[j, 1]))    # we return the index both loops reached before the mean was above 39.99
 }
 
 
@@ -59,13 +59,13 @@ new_alarm_forward <- function(table, i) {
   # Code for when the current event is over in forward analysis, as defined when HPI falls below 85 again after an event
   # 'table' is the dataframe we want to loop through, and 'i' is the current index we have reached and observed an event
 
-  for (k in seq(i, nrow(table))) {          # Looping over table from start value 'i' to end of the table
-    if (table[k, 2] < 85) {                 # If the HPI in row 'k' is less than 85 we break from the loop
+  for (k in seq(i, nrow(table))) {          # looping over table from start value 'i' to end of the table
+    if (table[k, 2] < 85) {                 # if the HPI in row 'k' is less than 85 we break from the loop
       break
     }
   }
 
-  return(k)                                 # Return index k
+  return(k)                                 # return index k
 
 }
 
@@ -76,13 +76,13 @@ new_alarm_backward <- function(table, i) {
   # Code for when the current event is over in backward analysis, as defined as either when the HPI is less than 85 again or the MAP is larger than 70 after an event
   # 'table' is the dataframe we want to loop through, and 'i' is the current index we have reached and observed an event
 
-  for (k in seq(i, nrow(table))) {               # Looping over table from start value 'i' to end of the table
-    #if (table[k, 2] < 85) {                   #HPI - If the HPI in row 'k' is less than 85 we break from the loop
-    if (table[k, 1] > 70) {                    #MAP -  If the MAP in row 'k' is greater than 70 we break from the loop
+  for (k in seq(i, nrow(table))) {               # looping over table from start value 'i' to end of the table
+    #if (table[k, 2] < 85) {                     # HPI - If the HPI in row 'k' is less than 85 we break from the loop
+    if (table[k, 1] > 70) {                      # MAP -  If the MAP in row 'k' is greater than 70 we break from the loop
       break
     }
   }
-  return(k)                                      # Return index k
+  return(k)                                      # return index k
 }
 
 
@@ -95,15 +95,15 @@ biggest_dif <- function(table, i) {
 
   n = nrow(table)
   biggest = 0
-  x = 6                # We want to look 2 minutes ahead, if posible
+  x = 6                # we want to look 2 minutes ahead, if posible
 
-  if (i > n-6) {       # If we are too close to the end of the table, x will be the amount of observations there are left
+  if (i > n-6) {       # if we are too close to the end of the table, x will be the amount of observations there are left
       x = n - i
     }
 
   for (k in seq(0, x-1)) {
 
-    if (table[i+k, 1] < 65 & i > 3) {
+    if (table[i+k, 1] < 65 & i > 3) {    # if the biggest diffrence is part of a hypotensive event, the function should return false
       #print(paste0("k = ", k))
       if(table[i+k-2, 1] < 65 & table[i+k-1, 1] < 65 & table[i+k, 1] < 65){
         return(FALSE)
@@ -117,7 +117,7 @@ biggest_dif <- function(table, i) {
     }
 
     for (m in seq(k+1, x)) {
-      if (table[i+m, 1] - table[i+k, 1] >= biggest ) {           #there is a difference of 8 or higher between to MAP points
+      if (table[i+m, 1] - table[i+k, 1] >= biggest ) {           # there is a difference of 8 or higher between to MAP points
         biggest = table[i+m, 1] - table[i+k, 1]
 
       }
@@ -145,10 +145,10 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
   table$MAP <- as.numeric(table$MAP)
   table$HPI <- as.numeric(table$HPI)
 
-  obs = minutes*3            # We have a sample for every 20 seconds, so to get the number of observations in the interval we multiply the minutes by 3
+  obs = minutes*3            # we have a sample for every 20 seconds, so to get the number of observations in the interval we multiply the minutes by 3
 
-  n = nrow(table[, 1])       # Defining the number of observations in the table
-  i = 1                      # The starting point of our first while loop
+  n = nrow(table[, 1])       # defining the number of observations in the table
+  i = 1                      # the starting point of our first while loop
 
   #Initialising the types of alarms we can get
   LA = 0          # Late Alarm
@@ -160,20 +160,20 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
   FN = 0          # False Negative
 
   #Forward Analysis
-  while (i <=  n-2) {      # In the loop we go from 1 to n-2 to not go out of bounds, as we have statements where we check two indexes ahead
+  while (i <=  n-2) {      # in the loop we go from 1 to n-2 to not go out of bounds, as we have statements where we check two indexes ahead
 
-    x = obs                # We define x as obs to allow for smaller intervals, to aviod getting out of bound
+    x = obs                # we define x as obs to allow for smaller intervals, to aviod getting out of bound
 
-    if (i > n-obs) {       # If we are too close to the end of the table, x will be the amount of observations there are left
+    if (i > n-obs) {       # if we are too close to the end of the table, x will be the amount of observations there are left
       x = n - i
     }
 
 
-    if ((table[i, 2] >= 85 & table[i+1, 2] >= 85 & hpi) | (table[i, 1] <= 72 & table[i+1, 1] <= 72 &! hpi)) {   # If the observation we are at and the next is ≥ 85 we have an alarm
+    if ((table[i, 2] >= 85 & table[i+1, 2] >= 85 & hpi) | (table[i, 1] <= 72 & table[i+1, 1] <= 72 &! hpi)) {   # if the observation we are at and the next is ≥ 85 we have an alarm
       
-      for (j in seq(1, x)) {                         # At the alarm we will then go up to 'x' observations ahead to see if there is an event
+      for (j in seq(1, x)) {                       # at the alarm we will then go up to 'x' observations ahead to see if there is an event
 
-        if (n-i < 4) {                             # Here we will be too close the the end of the table to check any kind of event so we break
+        if (n-i < 4) {                             # here we will be too close the the end of the table to check any kind of event so we break
           i = i + 1
           break
         }
@@ -182,7 +182,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
         # If we have three consecutive observations where MAP < 65 and we are within one minute from when the alarm was rised we count it as a late alarm
         if (table[i+j, 1] < 65 & table[i+j+1, 1] < 65 & table[i+j+2, 1] < 65 & j < 4) {
           LA = LA + 1
-          i = new_alarm_forward(table, i+j+1)      # The function new_alarm_forward finds the new index, which is when the current hypotensive event is over
+          i = new_alarm_forward(table, i+j+1)      # the function new_alarm_forward finds the new index, which is when the current hypotensive event is over
           break
         }
 
@@ -191,7 +191,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
         # If we have three consecutive observations where MAP < 65 and we are more than one minute from when the alarm was rised we count it as a true positive alarm
         if (table[i+j, 1] < 65 & table[i+j+1, 1] < 65 & table[i+j+2, 1] < 65 & j > 3) {
           TP_f = TP_f + 1
-          i = new_alarm_forward(table, i+j+1)      # The function new_alarm_forward finds the new index, which is when the current hypotensive event is over
+          i = new_alarm_forward(table, i+j+1)      # the function new_alarm_forward finds the new index, which is when the current hypotensive event is over
           break
         }
 
@@ -200,7 +200,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
         # The first part of both statements are to make sure we do not go out of bounds
         if (((n-i-j) >= 2 & (table[i+j+1, 1] - table[i+j, 1]) >= 5) | ((n-i-j) >= 6 & biggest_dif(table, i+j))) {
           MI = MI + 1
-          i = new_alarm_forward(table, i+j+1)        # The function new_alarm_forward finds the new index, which is when the current event is over
+          i = new_alarm_forward(table, i+j+1)        # the function new_alarm_forward finds the new index, which is when the current event is over
           break
         }
 
@@ -208,7 +208,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
         # If we are at the last index of the loop, we have not had any of the above mentioned events, but an alarm was raised, so it must be a false positive alarm
         if (j == x) {
           FP = FP + 1
-          i = new_alarm_forward(table, i+1)        # The function new_alarm_forward finds the new index, which is when the current event is over
+          i = new_alarm_forward(table, i+1)        # the function new_alarm_forward finds the new index, which is when the current event is over
           break
         }
 
@@ -226,19 +226,19 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
 
   #Backward Analysis
-  i = 6                   # We start at 6 because we do not count late alarms in the backwards analysis, so there is no reason to go through the first 5 observations
+  i = 6                   # we start at 6 because we do not count late alarms in the backwards analysis, so there is no reason to go through the first 5 observations
 
-  while (i <= n-2) {      # We go to n-2 to not go out of bounds, as we check MAP from 'i' and two ahead
+  while (i <= n-2) {      # we go to n-2 to not go out of bounds, as we check MAP from 'i' and two ahead
 
     if (table[i, 1] < 65 & table[i+1, 1] < 65 & table[i+2, 1] < 65) {   #if we have three consecutive MAP values under 65 we have a hypotensive event
-      x = obs         # We define x as obs to allow for smaller intervals, to aviod getting out of bound
+      x = obs             # we define x as obs to allow for smaller intervals, to aviod getting out of bound
 
-      if (i < obs) {  # If we are too close to the start of the table, x will be the amount of observations there are ahead of the index
-        x = i - 3     # We subtract 3 to avoid going out of bounds, when checking if it is an ongoing alarm
+      if (i < obs) {      # if we are too close to the start of the table, x will be the amount of observations there are ahead of the index
+        x = i - 3         # we subtract 3 to avoid going out of bounds, when checking if it is an ongoing alarm
       }
 
 
-      for (j in rev(seq(2, x))) {    # Starting the loop at x and endning at 2, so we can count an alarm that starts just before one minute to the event
+      for (j in rev(seq(2, x))) {    # starting the loop at x and endning at 2, so we can count an alarm that starts just before one minute to the event
 
         if ((table[i-j, 2] >= 85 & table[i-j-1, 2] >= 85 & j >= 3 & hpi) | (table[i-j, 1] <= 72 & table[i-j-1, 1] <= 72 & j >= 3 &! hpi)) {        # there is an alarm that starts one minute or more before the event
 
@@ -246,7 +246,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
           # If the alarm started before the interval we are checking in and all observations of HPI in the interval are greater than or equal to 85 we count it as an ongoing alarm
           if (table[i-j-2, 2] >= 85 & j == obs & all(table[i-x:i, 2] >= 85) ) {
             OA = OA + 1
-            i = new_alarm_backward(table, i)         # The function new_alarm_backward finds the new index, which is when the current event is over
+            i = new_alarm_backward(table, i)         # the function new_alarm_backward finds the new index, which is when the current event is over
             break
           }
 
@@ -254,7 +254,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
           # If there is an alarm in the interval and it isn't an ongoing alarm it is a true positive
           else{
             TP_b = TP_b + 1
-            i = new_alarm_backward(table, i)         # The function new_alarm_backward finds the new index, which is when the current event is over
+            i = new_alarm_backward(table, i)         # the function new_alarm_backward finds the new index, which is when the current event is over
             break
           }
 
@@ -263,7 +263,7 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
         # If we have gone through the time interval and there hasn't been an alarm we count it as a false negative
         if (j == 2) {
           FN = FN + 1
-          i = new_alarm_backward(table, i)           # The function new_alarm_backward finds the new index, which is when the current event is over
+          i = new_alarm_backward(table, i)           # the function new_alarm_backward finds the new index, which is when the current event is over
           break
         }
 
@@ -287,29 +287,29 @@ fb_analysis <- function(case, table, minutes, hpi=TRUE){
 
 confusion_matrix <- function(directory, minutes, HPI){
 
-
+  # Defining tha dataframe it should put the returns values into
   columns= c("Case","LA", "OA", "MI", "TP_f", "TP_b", "FP", "FN")
 
   confusion = data.frame(matrix(nrow=1, ncol = length(columns)))
 
   colnames(confusion) = columns
 
-  #getting a list of all files in the directory
+  # Getting a list of all files in the directory
   all_files <-list.files(directory)
 
-  # used grep to find occurrences of strings that start with "Case" and end in ".xlsx"
+  # Using grep to find occurrences of strings that start with "Case" and end in ".xlsx"
   strings <- grep("^Case.*\\.xlsx$", all_files, value = TRUE)
 
-  #looping over each file found in the directory that has monitor data
+  # Looping over each file found in the directory that has monitor data
   for (string in strings){
 
     print(string)
     
-    case_id <- as.numeric(strapplyc(string, "Case(\\d+)", simplify = TRUE))      #getting the case number from the file-name
+    case_id <- as.numeric(strapplyc(string, "Case(\\d+)", simplify = TRUE))      # getting the case number from the file-name
 
-    table <- remove_repetition(case_id, string)                                  #removing potential repetition in the monitor data
+    table <- remove_repetition(case_id, string)                                  # removing potential repetition in the monitor data
 
-    confusion <- rbind(confusion, fb_analysis(case_id, table, minutes, hpi=HPI)) #getting the confusion values from the current file and adding it to the confusion. matrix
+    confusion <- rbind(confusion, fb_analysis(case_id, table, minutes, hpi=HPI)) # getting the confusion values from the current file and adding it to the confusion. matrix
   }
 
   confusion <- confusion[-1, ]
@@ -320,9 +320,10 @@ confusion_matrix <- function(directory, minutes, HPI){
 
 
 calculate_ppv_sens <- function(table){
-  ppv <- sum(table$TP_f)/(sum(table$TP_f) + sum(table$FP))
-  sens <- sum(table$TP_b)/(sum(table$TP_b) + sum(table$FN))
+  ppv <- sum(table$TP_f)/(sum(table$TP_f) + sum(table$FP))    # calculating positive predictive value with the formula TP/(TP + FP)
+  sens <- sum(table$TP_b)/(sum(table$TP_b) + sum(table$FN))   # calculating sensitivity with the formula TP/(TP + FN)
 
+  # Naming the columns for dataframe containing the calculated values
   Positive_Predictive_Value= c(ppv)
   Sensitivity = c(sens)
 
