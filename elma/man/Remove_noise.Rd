@@ -7,7 +7,7 @@ Removes noise
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-This function removes the static noise that are at the beginning and end of the VitalDB data.
+This function removes the static noise that are at the beginning and end of the VitalDB arterial pressure data.
 }
 \usage{
 remove_noise(table)
@@ -28,7 +28,7 @@ The dataframe should consist of 2 coloumns, one being time and the other shoud b
 %%  \item{comp1 }{Description of 'comp1'}
 %%  \item{comp2 }{Description of 'comp2'}
 %% ...
-The function returns a dataframe where tthe noise has been removed at the start and end, so it will be smaller than the original dataframe.
+The function returns a dataframe where the noise has been removed at the start and end.
 }
 \references{
 %% ~put references to the literature/web site here ~
