@@ -7,9 +7,9 @@ Removes repetition
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
-Removes the repetition that maybe on the file from the monitor, it does so by identifying how long the file should be, and then cuts it to be this length.
+Removes the repetition that maybe in the file from the monitor. It does so by identifying how long the file should be, and then cuts it to be this length.
 
-When the data is played from the computer to the moniter via the soundcard, the computer replays the data when it is done. This means that the data repeats itself and the datafile from the moniter also has this repetition. We use this function to get the data without repetition
+When the data is played from the computer to the moniter via the soundcard, the computer replays the data when it is done. This means that the data repeats itself and the data file from the moniter also has this repetition. We use this function to get the data without repetition
 }
 \usage{
 remove_repetition(case, table)
