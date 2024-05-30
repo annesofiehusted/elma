@@ -3,7 +3,7 @@
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 %%  ~~function to do ... ~~
-Finds the end of an event for a forward analysis
+Finds the end of an event for a forward analysis.
 }
 \description{
 %%  ~~ A concise (1-5 lines) description of what the function does. ~~
@@ -22,7 +22,7 @@ new_alarm_forward(table, i)
 }
 \details{
 %%  ~~ If necessary, more details than the description above ~~
-Input should be a dataframe with two coloumns, one with MAP data and the other with HPI data, and the index input should be the index for when the event starts.
+Input should be a dataframe with two coloumns, one with MAP data and the other with HPI data. The index input should be the index for when the event starts.
 }
 \value{
 %%  ~Describe the value returned
