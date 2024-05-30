@@ -41,9 +41,9 @@ When the data has been passed through the monitor, the data is analysed and the 
 
 # Before Monitor
 
-All data used in this project is as said from the opensource database VitalDB. 
+All data used in this project is from the opensource database VitalDB, as previously stated. 
 
-The code below is an example for how to find which cases should be passed through the monitor.  In this example there is specified, that the cases must be from open general surgery with general anesthesia. Other specifications can be found at https://vitaldb.net/dataset/. 
+The code below is an example of how to find which cases should be passed through the monitor.  In this example it is specified, that the cases must be from open general surgery with general anesthesia. Other specifications can be found at https://vitaldb.net/dataset/. 
 
 ```{r load cases}
 cases <- VitalDBR::load_VDB("https://api.vitaldb.net/cases") %>%
@@ -52,7 +52,7 @@ cases <- VitalDBR::load_VDB("https://api.vitaldb.net/cases") %>%
                     ane_type=="General") 
 ```
 
-From the dataset 'cases' it can be seen which cases meets the criteria listed. To download a specific case, the code below can be used, where there is specified which case id is wanted, and what type of data we want from this case. For this analysis the only data needed is the arterial pressure, which is called 'SNUADC/ART' in the VitalDB database. 
+From the dataset 'cases' it can be seen which cases meet the criteria listed. To download a specific case, the code below can be used, where there is specified which case id is wanted, and what type of data we want from this case. For this analysis the only data needed is the arterial pressure, which is called 'SNUADC/ART' in the VitalDB database. 
 ```{r load a case}
 vitalDB_case50 <- VitalDBR::load_case(tname = 'SNUADC/ART', caseid = 50)
 ```
