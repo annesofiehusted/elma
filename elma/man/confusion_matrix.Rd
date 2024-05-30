@@ -10,7 +10,7 @@ Loops through files in directory and runs them through the function 'fb_analysis
 The function loops through the case files in the given directory, and passes them through the forward backward analysis function 'fb_analysis', and makes a dataframe with all returns.
 }
 \usage{
-confusion_matrix(directory, minutes, bol)
+confusion_matrix(directory, minutes, HPI)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -19,7 +19,7 @@ confusion_matrix(directory, minutes, bol)
 The chosen directory.
 }
  \item{minutes}{ Number of minutes in the interval.}
- \item{bool}{ A boolean value.}
+ \item{HPI}{ A boolean value.}
 }
 
 \details{
